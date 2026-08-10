@@ -53,15 +53,6 @@ def upload():
     if foto is None or foto.filename == "":
         return "Tidak ada foto yang dipilih."
 
-    # Menyimpan foto
-    lokasi = os.path.join(
-        app.config["UPLOAD_FOLDER"],
-        foto.filename
-    )
-
-    foto.save(lokasi)
-
-
     # ==========================================
     # SEMENTARA:
     # ID BARANG MASIH DITENTUKAN MANUAL
