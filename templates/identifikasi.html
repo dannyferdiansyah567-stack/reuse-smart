@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Identifikasi - Reuse Smart</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            ♻️ Reuse Smart
+        </div>
+
+        <div class="nav-menu">
+
+            <a href="/">
+                Beranda
+            </a>
+
+            <a href="/identifikasi"
+               class="active">
+                Identifikasi
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <main class="identify-page">
+
+        <div class="section-title">
+
+            <span>IDENTIFIKASI</span>
+
+            <h1>
+                Barang bekas apa yang kamu punya?
+            </h1>
+
+            <p>
+                Upload foto barang untuk mendapatkan
+                rekomendasi pemanfaatan kembali.
+            </p>
+
+        </div>
+
+
+        <form action="/upload"
+              method="POST"
+              enctype="multipart/form-data"
+              class="upload-form">
+
+
+            <div class="upload-box"
+                 id="uploadBox">
+
+                <div class="upload-icon">
+                    📷
+                </div>
+
+                <h2>
+                    Upload Foto Barang
+                </h2>
+
+                <p>
+                    Pilih foto dari perangkat kamu
+                </p>
+
+                <label for="foto"
+                       class="upload-button">
+
+                    Pilih Foto
+
+                </label>
+
+                <input
+                    type="file"
+                    id="foto"
+                    name="foto"
+                    accept="image/*"
+                    required
+                    hidden
+                >
+
+                <p class="format">
+                    JPG, JPEG, PNG atau WEBP
+                </p>
+
+            </div>
+
+
+            <!-- PREVIEW -->
+
+            <div class="preview-container"
+                 id="previewContainer">
+
+                <img id="previewImage"
+                     alt="Preview foto">
+
+                <div>
+
+                    <h3 id="fileName">
+                        Nama foto
+                    </h3>
+
+                    <button type="button"
+                            id="removeImage">
+
+                        Hapus foto
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <button type="submit"
+                    class="btn-primary identify-button">
+
+                🔍 Identifikasi Barang
+
+            </button>
+
+        </form>
+
+    </main>
+
+
+    <script src="{{ url_for('static',
+                            filename='js/script.js') }}">
+    </script>
+
+</body>
+
+</html>

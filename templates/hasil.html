@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Hasil Identifikasi - Reuse Smart</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            ♻️ Reuse Smart
+        </div>
+
+        <div class="nav-menu">
+
+            <a href="/">
+                Beranda
+            </a>
+
+            <a href="/identifikasi"
+               class="active">
+                Identifikasi
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN -->
+
+    <main class="result-page">
+
+
+        <!-- HEADER -->
+
+        <div class="result-header">
+
+            <span class="result-badge">
+                ✓ IDENTIFIKASI SELESAI
+            </span>
+
+            <h1>
+                Hasil Identifikasi Barang
+            </h1>
+
+            <p>
+                Berikut adalah informasi mengenai barang
+                yang kamu upload dan rekomendasi
+                pemanfaatan kembali.
+            </p>
+
+        </div>
+
+
+        <!-- RESULT CARD -->
+
+        <section class="result-card">
+
+
+            <!-- FOTO -->
+
+            <div class="result-photo">
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='uploads/' + foto
+                    ) }}"
+                    alt="Foto barang">
+
+            </div>
+
+
+            <!-- INFORMASI -->
+
+            <div class="result-info">
+
+                <span class="small-label">
+                    BARANG TERIDENTIFIKASI
+                </span>
+
+                <h2>
+                    {{ barang["nama_barang"] }}
+                </h2>
+
+                <div class="category">
+
+                    ♻️
+
+                    {{ barang["kategori"] }}
+
+                </div>
+
+                <p class="description">
+
+                    {{ barang["deskripsi"] }}
+
+                </p>
+
+
+                <!-- CONFIDENCE SEMENTARA -->
+
+                <div class="confidence">
+
+                    <div class="confidence-header">
+
+                        <span>
+                            Tingkat Kecocokan
+                        </span>
+
+                        <strong>
+                            90%
+                        </strong>
+
+                    </div>
+
+                    <div class="progress">
+
+                        <div class="progress-value"></div>
+
+                    </div>
+
+                    <small>
+                        Hasil ini akan menggunakan model
+                        identifikasi gambar setelah sistem
+                        selesai dikembangkan.
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- REKOMENDASI -->
+
+        <section class="recommendation-section">
+
+
+            <div class="section-title left">
+
+                <span>
+                    REKOMENDASI
+                </span>
+
+                <h2>
+                    Yuk, manfaatkan kembali!
+                </h2>
+
+                <p>
+                    Berikut beberapa ide yang dapat dilakukan
+                    untuk memperpanjang masa penggunaan barang.
+                </p>
+
+            </div>
+
+
+            <div class="recommendation-grid">
+
+
+                {% for item in rekomendasi %}
+
+
+                <div class="recommendation-card">
+
+
+                    <div class="recommendation-icon">
+                        ♻️
+                    </div>
+
+
+                    <div class="recommendation-content">
+
+                        <h3>
+                            {{ item["nama_rekomendasi"] }}
+                        </h3>
+
+                        <p>
+                            {{ item["deskripsi"] }}
+                        </p>
+
+
+                        <div class="recommendation-meta">
+
+                            <span>
+                                🛠️
+                                {{ item["tingkat_kesulitan"] }}
+                            </span>
+
+                            <span>
+                                🏷️
+                                {{ item["kategori_pemanfaatan"] }}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                {% endfor %}
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ACTION -->
+
+        <section class="result-action">
+
+            <div>
+
+                <h2>
+                    Punya barang bekas lainnya?
+                </h2>
+
+                <p>
+                    Coba upload foto barang lainnya
+                    dan temukan ide pemanfaatannya.
+                </p>
+
+            </div>
+
+
+            <a href="/identifikasi"
+               class="btn-primary">
+
+                📷 Identifikasi Barang Lain
+
+            </a>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="logo">
+            ♻️ Reuse Smart
+        </div>
+
+        <p>
+            Mengubah barang bekas menjadi sesuatu
+            yang lebih bermanfaat.
+        </p>
+
+        <small>
+            © 2026 Reuse Smart
+        </small>
+
+    </footer>
+
+
+</body>
+
+</html>
