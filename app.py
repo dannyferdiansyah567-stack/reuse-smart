@@ -54,37 +54,33 @@ def upload():
         return "Tidak ada foto yang dipilih."
 
     # ==========================================
-    # MEMBACA FOTO LANGSUNG KE MEMORY
+    # FOTO DIBACA LANGSUNG KE MEMORY
+    # TIDAK DISIMPAN KE static/uploads
     # ==========================================
+
+    import base64
 
     foto_data = foto.read()
 
-    foto_base64 = base64.b64encode(
-        foto_data
-    ).decode("utf-8")
+    foto_base64 = base64.b64encode(foto_data).decode("utf-8")
 
-    # Menentukan tipe gambar
     content_type = foto.content_type or "image/jpeg"
 
     foto_url = f"data:{content_type};base64,{foto_base64}"
 
-
     # ==========================================
     # SEMENTARA
-    # ID BARANG MASIH DITENTUKAN MANUAL
+    # ID BARANG MASIH MANUAL
     # ==========================================
 
     id_barang = 1
 
-
     # ==========================================
-    # MENGAMBIL DATA DARI DATABASE
+    # DATABASE
     # ==========================================
 
     connection = get_db_connection()
 
-
-    # Mengambil data barang
     barang = connection.execute(
         """
         SELECT *
@@ -94,8 +90,6 @@ def upload():
         (id_barang,)
     ).fetchone()
 
-
-    # Mengambil rekomendasi
     rekomendasi = connection.execute(
         """
         SELECT *
@@ -105,9 +99,7 @@ def upload():
         (id_barang,)
     ).fetchall()
 
-
     connection.close()
-
 
     # ==========================================
     # MENAMPILKAN HASIL
