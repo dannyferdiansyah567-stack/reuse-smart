@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request
 import sqlite3
-import os
 import base64
 
 app = Flask(__name__)
+
 
 # ==========================================
 # FUNGSI KONEKSI DATABASE
@@ -47,26 +47,25 @@ def identifikasi():
 @app.route("/upload", methods=["POST"])
 def upload():
 
-    # Mengambil foto
     foto = request.files.get("foto")
 
     if foto is None or foto.filename == "":
         return "Tidak ada foto yang dipilih."
 
     # ==========================================
-    # FOTO DIBACA LANGSUNG KE MEMORY
-    # TIDAK DISIMPAN KE static/uploads
+    # MEMBACA FOTO LANGSUNG KE MEMORY
     # ==========================================
-
-    import base64
 
     foto_data = foto.read()
 
-    foto_base64 = base64.b64encode(foto_data).decode("utf-8")
+    foto_base64 = base64.b64encode(
+        foto_data
+    ).decode("utf-8")
 
     content_type = foto.content_type or "image/jpeg"
 
     foto_url = f"data:{content_type};base64,{foto_base64}"
+
 
     # ==========================================
     # SEMENTARA
@@ -75,8 +74,9 @@ def upload():
 
     id_barang = 1
 
+
     # ==========================================
-    # DATABASE
+    # MENGAMBIL DATA DATABASE
     # ==========================================
 
     connection = get_db_connection()
@@ -100,6 +100,7 @@ def upload():
     ).fetchall()
 
     connection.close()
+
 
     # ==========================================
     # MENAMPILKAN HASIL
